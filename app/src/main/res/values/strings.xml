@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">UserInfo</string>
+    <string name="UserName">User Name</string>
+    <string name="EnterUserName">Enter user name</string>
+    <string name="Email">Email</string>
+    <string name="PhoneNumber">Phone Number</string>
+    <string name="PinCode">Pin Code</string>
+    <string name="EnterPhoneNumber">Enter Phone Number</string>
+    <string name="EnterPinCode">Enter Pin code</string>
+    <string name="Address">Address</string>
+    <string name="Validate">Validate</string>
+    <string name="EnterEmail">Enter Email</string>
+    <string name="EnterAddress">Enter Address</string>
+    <string name="Cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+</resources>
