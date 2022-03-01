@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".DisplayUserInfo"
             android:exported="true"/>
     </application>
 
