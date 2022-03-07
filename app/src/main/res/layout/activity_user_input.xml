@@ -6,17 +6,16 @@
     android:layout_width="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/userDetailsLayout">
 
         <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textSize="35dp"
+            android:textSize="35sp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="3dp" />
@@ -25,7 +24,6 @@
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/UserName"
             app:layout_constraintTop_toBottomOf="@+id/header"
             tools:ignore="MissingConstraints"
@@ -35,7 +33,6 @@
             android:id="@+id/userNameET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:ellipsize="end"
             android:hint="@string/EnterUserName"
             app:layout_constraintTop_toBottomOf="@+id/userName"
@@ -56,8 +53,6 @@
             android:id="@+id/emailET"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:ellipsize="end"
             android:hint="@string/EnterEmail"
             app:layout_constraintTop_toBottomOf="@+id/email"
             tools:ignore="MissingConstraints"
@@ -78,7 +73,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-
             android:hint="@string/EnterPhoneNumber"
             android:inputType="number"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
@@ -89,7 +83,6 @@
             android:id="@+id/pinCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/PinCode"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumberET"
             tools:ignore="MissingConstraints"
@@ -135,7 +128,7 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/ConfirmButton"
+            android:id="@+id/confirmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirm"
@@ -149,7 +142,19 @@
             android:layout_height="wrap_content"
             android:text="@string/Cancel"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/ConfirmButton"
+            app:layout_constraintTop_toBottomOf="@id/confirmButton"
             tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupedButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="cancelButton,confirmButton" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupedViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="userNameET,emailET,phoneNumberET,pinCodeET,addressET" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
