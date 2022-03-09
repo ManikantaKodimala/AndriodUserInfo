@@ -2,12 +2,8 @@ package com.example.userinfo
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.Group
 import com.example.userinfo.databinding.ActivityUserInputBinding
 
 class UserInputActivity : AppCompatActivity() {
@@ -32,14 +28,14 @@ class UserInputActivity : AppCompatActivity() {
                 val isAllFieldsEnteredProperly = validation.checkAllFieldsEnteredProperly(binding.userNameET.text.toString(), binding.emailET.text.toString(), binding.phoneNumberET.text.toString(), binding.pinCodeET.text.toString())
                 if (isAllFieldsEnteredProperly) {
                     visible=false
-                    changeView.changeVisibilities(visible,binding.groupedViews,binding.validateButton,binding.groupedButtons)
+                    changeView.changeVisibilities(visible,binding,binding.validateButton,binding.groupedButtons)
                 }
             }
         }
 
         binding.cancelButton.setOnClickListener{
             visible=true
-            changeView.changeVisibilities(visible,binding.groupedViews,binding.validateButton,binding.groupedButtons)
+            changeView.changeVisibilities(visible,binding,binding.validateButton,binding.groupedButtons)
         }
 
         binding.confirmButton.setOnClickListener{
@@ -63,7 +59,7 @@ class UserInputActivity : AppCompatActivity() {
         val changeView= ChangeView()
 
         visible=savedInstanceState.getBoolean(Visible)
-        changeView.changeVisibilities(visible,binding.groupedViews,binding.validateButton,binding.groupedButtons)
+        changeView.changeVisibilities(visible,binding,binding.validateButton,binding.groupedButtons)
     }
 
 }
