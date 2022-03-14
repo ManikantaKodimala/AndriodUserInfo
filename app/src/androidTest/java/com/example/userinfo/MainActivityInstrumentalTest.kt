@@ -1,16 +1,12 @@
 package com.example.userinfo
 
-import android.view.View
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule
@@ -19,13 +15,13 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-class UserInputActivityInstrumentalTest {
+class MainActivityInstrumentalTest {
 
     @get:Rule
-    val rule: ActivityScenarioRule<UserInputActivity> = ActivityScenarioRule(UserInputActivity::class.java)
+    val rule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
 
     @get:Rule
-    val intentsTestRule = IntentsTestRule(UserInputActivity::class.java)
+    val intentsTestRule = IntentsTestRule(MainActivity::class.java)
 
     @Before
     fun setUp(){
