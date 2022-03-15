@@ -14,13 +14,13 @@ import java.lang.RuntimeException
 
 
 class UserInputFragment : Fragment(R.layout.activity_user_input) {
-    private lateinit var binding:ActivityUserInputBinding
+    private lateinit var binding: ActivityUserInputBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = ActivityUserInputBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,24 +28,38 @@ class UserInputFragment : Fragment(R.layout.activity_user_input) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = activity?.let { ViewModelProvider(it)[CustomViewModel::class.java] } ?: throw RuntimeException("Not a Activity")
-        val allFields = ArrayList<EditText>()
+        val viewModel = activity?.let { ViewModelProvider(it)[CustomViewModel::class.java] }
+            ?: throw RuntimeException("Not a Activity")
 
-        view.findViewById<Button>(R.id.validateButton).setOnClickListener {
-            allFields.add(binding.userNameET)
-            allFields.add(binding.emailET)
-            allFields.add(binding.phoneNumberET)
-            allFields.add(binding.pinCodeET)
-            allFields.add(binding.addressET)
-           viewModel.validateInput(allFields)
+        binding.validateButton.setOnClickListener {
+            val allFieldsValues = getValueOfFields()
+            viewModel.validateInput(allFieldsValues)
         }
-        viewModel.isDataValid.observe(viewLifecycleOwner){
-            changeVisibilities(it,binding.userNameET,binding.emailET,binding.phoneNumberET,binding.pinCodeET,binding.addressET,binding.validateButton)
+        viewModel.isDataValid.observe(viewLifecycleOwner) {
+            changeVisibilities(
+                it,
+                binding.userNameET,
+                binding.emailET,
+                binding.phoneNumberET,
+                binding.pinCodeET,
+                binding.addressET,
+                binding.validateButton
+            )
         }
     }
 
+    private fun getValueOfFields(): List<String> {
+        val allValues = ArrayList<String>()
+        for (i in 0 until binding.userDetailsLayout.childCount) {
+            if (binding.userDetailsLayout.getChildAt(i) is EditText) {
+                allValues.add((binding.userDetailsLayout.getChildAt(i) as EditText).text.toString())
+            }
+        }
+        return allValues
+    }
+
     private fun changeVisibilities(
-        visible: Boolean,
+        editable: Boolean,
         userNameET: EditText,
         emailET: EditText,
         phoneNumberET: EditText,
@@ -53,12 +67,12 @@ class UserInputFragment : Fragment(R.layout.activity_user_input) {
         addressET: EditText,
         validateButton: Button
     ) {
-        validateButton.visibility = if(visible) View.GONE else View.VISIBLE
-        userNameET.isEnabled= !visible
-        emailET.isEnabled= !visible
-        phoneNumberET.isEnabled= !visible
-        addressET.isEnabled= !visible
-        pinCodeET.isEnabled= !visible
+        validateButton.visibility = if (editable) View.GONE else View.VISIBLE
+        userNameET.isEnabled = !editable
+        emailET.isEnabled = !editable
+        phoneNumberET.isEnabled = !editable
+        addressET.isEnabled = !editable
+        pinCodeET.isEnabled = !editable
 
     }
 }
