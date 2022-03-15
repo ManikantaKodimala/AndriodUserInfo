@@ -1,20 +1,14 @@
 package com.example.userinfo
 
-import android.widget.EditText
-
 class Validation {
 
     fun checkAllFields(
-        fields: ArrayList<EditText>
+        fields: List<String>
     ): Boolean {
 
-        for (field in fields) {
-            if (isFieldEmpty(field.text.toString())) {
-                toastMessagePasser=field.hint.toString()
-                return false
-            }
+        return !fields.any {
+            isFieldEmpty(it)
         }
-        return true
     }
 
     fun checkAllFieldsEnteredProperly(
@@ -44,9 +38,6 @@ class Validation {
 
 
     fun isFieldEmpty(field: String): Boolean {
-        if (field.trim().isEmpty()) {
-            return true
-        }
-        return false
+        return field.trim().isEmpty()
     }
 }
