@@ -25,26 +25,24 @@ class NavigationFragment : Fragment(R.layout.activity_navigation_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = activity?.let { ViewModelProvider(it)[CustomViewModel::class.java] } ?: throw RuntimeException("Not a Activity")
-        val isDataValid = viewModel.isDataValid.value!!
+        val viewModel = activity?.let { ViewModelProvider(it)[CustomViewModel::class.java] }
+            ?: throw RuntimeException("Not a Activity")
 
         viewModel.isDataValid.observe(viewLifecycleOwner) {
             changeVisibilities(it)
         }
 
-        binding.confirmButton.setOnClickListener{
-            Log.i("cnfbtton clicked", "true")
+        binding.confirmButton.setOnClickListener {
             viewModel.confirmButtonClicked()
         }
-        binding.cancelButton.setOnClickListener{
+        binding.cancelButton.setOnClickListener {
             viewModel.cancelButtonClicked()
         }
 
 
-}
+    }
 
     private fun changeVisibilities(visibility: Boolean) {
-        Log.i("Navigation framents ",visibility.toString())
-      binding.groupedButtons.visibility = if(visibility) View.VISIBLE else View.GONE
+        binding.groupedButtons.visibility = if (visibility) View.VISIBLE else View.GONE
     }
 }

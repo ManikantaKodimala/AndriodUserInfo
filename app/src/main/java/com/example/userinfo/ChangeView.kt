@@ -1,24 +1,22 @@
 package com.example.userinfo
 
-import android.os.Binder
 import android.view.View
 import android.widget.Button
-import androidx.constraintlayout.widget.Group
 import com.example.userinfo.databinding.ActivityUserInputBinding
 
 class ChangeView {
      fun changeVisibilities(
-         visible: Boolean,
+         editale: Boolean,
          binding: ActivityUserInputBinding,
          validateButton: Button,
          ) {
 //        buttonsGroup.visibility = if(!visible!!) View.VISIBLE else View.GONE
-        validateButton.visibility = if(visible) View.GONE else View.VISIBLE
-         binding.userNameET.isEnabled= !visible
-         binding.emailET.isEnabled= !visible
-         binding.phoneNumberET.isEnabled= !visible
-         binding.addressET.isEnabled= !visible
-         binding.pinCodeET.isEnabled= !visible
+        validateButton.visibility = if(editale) View.GONE else View.VISIBLE
+         binding.userNameET.isEnabled= !editale
+         binding.emailET.isEnabled= !editale
+         binding.phoneNumberET.isEnabled= !editale
+         binding.addressET.isEnabled= !editale
+         binding.pinCodeET.isEnabled= !editale
      }
 
 }
