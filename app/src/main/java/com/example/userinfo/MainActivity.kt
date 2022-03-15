@@ -1,20 +1,14 @@
 package com.example.userinfo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.userinfo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    var visible: Boolean? = true
-    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         }
         viewModel.toastMessage.observe(this) {
-            Log.i("toast mssg is changed","true")
             makeToast(it)
         }
 
@@ -48,7 +41,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showScreen(valid: Boolean) {
-        Log.i("show screen is called", valid.toString())
         if (valid) {
             showFragment(R.id.second_container, NavigationFragment(), true)
         } else {
@@ -65,9 +57,8 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun makeToast(text: String) {
+    private fun makeToast(text: String) {
         val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
         toast.show()
-        Log.i("make toast is called","true")
     }
 }
