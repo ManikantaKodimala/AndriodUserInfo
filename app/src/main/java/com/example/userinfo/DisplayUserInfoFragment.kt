@@ -24,27 +24,19 @@ class DisplayUserInfoFragment : Fragment(R.layout.activity_display_user_info) {
         super.onViewCreated(view, savedInstanceState)
 
         val viewModel = activity?.let { ViewModelProvider(it)[CustomViewModel::class.java] } ?: throw RuntimeException("Not a Activity")
-        val userName=viewModel.userName.value!!
-        Log.i("userName in dis",userName)
-        val email=viewModel.email.value!!
-        Log.i("email in dis",email)
-        val phoneNumber=viewModel.phoneNumber.value!!
-        val pinCode = viewModel.pinCode.value!!
-        val address= viewModel.address.value!!
+       val userDetails = viewModel.userDetails.value!!
+        var message=""
         viewModel.isConfirmClicked.observe(viewLifecycleOwner) {
-            setText(userName,email,phoneNumber,pinCode,address)
+            message=getString(R.string.displayUserInfo,userDetails.userName,userDetails.address,userDetails.pinCode,userDetails.phoneNumber,userDetails.email)
+            setText(message)
         }
 
 
     }
 
     private fun setText(
-        userName: String,
-        email: String,
-        phoneNumber: String,
-        pinCode: String,
-        address: String
+        message:String
     ) {
-        binding.display.text=getString(R.string.displayUserInfo,userName,address,pinCode.toString(),phoneNumber.toString(),email)
+        binding.display.text=message
     }
 }

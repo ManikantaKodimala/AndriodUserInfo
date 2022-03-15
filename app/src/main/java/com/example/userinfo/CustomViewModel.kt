@@ -5,26 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CustomViewModel : ViewModel() {
-    private val _userName = MutableLiveData("")
-    private val _email = MutableLiveData("")
-    private val _phoneNumber = MutableLiveData("")
-    private val _pinCode = MutableLiveData("")
-    private val _address = MutableLiveData("")
+    private val _userDetails = MutableLiveData(UserDetails("","","","",""))
     private val _toastMessage = MutableLiveData("")
-
     private val _isDataValid = MutableLiveData(false)
     private val _isConfirmClicked = MutableLiveData(false)
     private val _isCancelClicked = MutableLiveData(false)
 
-    val userName: LiveData<String> = _userName
-    val email: LiveData<String> = _email
-    val phoneNumber: LiveData<String> = _phoneNumber
-    val pinCode: LiveData<String> = _pinCode
-    val address: LiveData<String> = _address
     val isDataValid: LiveData<Boolean> = _isDataValid
     val isConfirmClicked: LiveData<Boolean> = _isConfirmClicked
     val isCancelClicked: LiveData<Boolean> = _isCancelClicked
     val toastMessage: LiveData<String> = _toastMessage
+    val userDetails:LiveData<UserDetails> = _userDetails
 
 
     fun validateInput(allFields: List<String>) {
@@ -39,11 +30,7 @@ class CustomViewModel : ViewModel() {
             )
             if (isAllFieldsEnteredProperly) {
                 _isDataValid.postValue(true)
-                _userName.postValue(allFields[0])
-                _email.postValue(allFields[1])
-                _phoneNumber.postValue(allFields[2])
-                _pinCode.postValue(allFields[3])
-                _address.postValue(allFields[4])
+                _userDetails.postValue(UserDetails(allFields[0],allFields[1],allFields[2],allFields[3],allFields[4]))
             } else {
                 setToastMessages()
             }
@@ -58,6 +45,7 @@ class CustomViewModel : ViewModel() {
 
     fun cancelButtonClicked() {
         _isCancelClicked.postValue(!_isCancelClicked.value!!)
+        _isDataValid.postValue(false)
     }
 
     private fun setToastMessages() {
