@@ -1,6 +1,5 @@
 package com.example.userinfo
 
-import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,22 +27,23 @@ class CustomViewModel : ViewModel() {
     val toastMessage: LiveData<String> = _toastMessage
 
 
-    fun validateInput(allFields: ArrayList<EditText>) {
+    fun validateInput(allFields: List<String>) {
         val validation = Validation()
+
         if (validation.checkAllFields(allFields)) {
             val isAllFieldsEnteredProperly = validation.checkAllFieldsEnteredProperly(
-                allFields[0].text.toString(),
-                allFields[1].text.toString(),
-                allFields[2].text.toString(),
-                allFields[3].text.toString()
+                allFields[0],
+                allFields[1],
+                allFields[2],
+                allFields[3]
             )
             if (isAllFieldsEnteredProperly) {
                 _isDataValid.postValue(true)
-                _userName.postValue(allFields[0].text.toString())
-                _email.postValue(allFields[1].text.toString())
-                _phoneNumber.postValue(allFields[2].text.toString())
-                _pinCode.postValue(allFields[3].text.toString())
-                _address.postValue(allFields[4].text.toString())
+                _userName.postValue(allFields[0])
+                _email.postValue(allFields[1])
+                _phoneNumber.postValue(allFields[2])
+                _pinCode.postValue(allFields[3])
+                _address.postValue(allFields[4])
             } else {
                 setToastMessages()
             }
@@ -58,7 +58,6 @@ class CustomViewModel : ViewModel() {
 
     fun cancelButtonClicked() {
         _isCancelClicked.postValue(!_isCancelClicked.value!!)
-//        _isDataValid.postValue(!_isDataValid.value!!)
     }
 
     private fun setToastMessages() {
