@@ -46,6 +46,18 @@ class UserInputFragment : Fragment(R.layout.activity_user_input) {
                 binding.validateButton
             )
         }
+        val userDetails = viewModel.userDetails.value!!
+        viewModel.isCancelClicked.observe(viewLifecycleOwner){
+            reWriteUserDetails(userDetails)
+        }
+    }
+
+    private fun reWriteUserDetails(userDetails: UserDetails) {
+        binding.userNameET.setText(userDetails.userName)
+        binding.emailET.setText(userDetails.email)
+        binding.phoneNumberET.setText(userDetails.phoneNumber)
+        binding.pinCodeET.setText(userDetails.pinCode)
+        binding.addressET.setText(userDetails.address)
     }
 
     private fun getValueOfFields(): List<String> {
